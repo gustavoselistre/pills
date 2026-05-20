@@ -218,6 +218,9 @@
     }
     .cal-day.future { opacity: 0.4; }
     .cal-day.empty { background: transparent; }
+    .cal-day.clickable { cursor: pointer; transition: transform .12s, filter .12s; }
+    .cal-day.clickable:hover { transform: scale(1.14); filter: brightness(.94); }
+    .cal-day.clickable:active { transform: scale(.92); }
 
     /* ---- Notifications ---- */
     .notif-section { display: flex; flex-direction: column; gap: 12px; }
@@ -271,7 +274,7 @@
 </head>
 <body>
 <div class="app">
-  <div class="app-name">lembrete da kamilly</div>
+  <div class="app-name">lembrete da minha We-bêbê-r</div>
 
   <div class="hero-card">
     <div class="hk-wrap" id="hk-wrap">
@@ -341,6 +344,9 @@
       <input type="time" class="time-input" id="notif-time" value="08:30" onchange="saveTime(this.value)" />
     </div>
     <button class="btn-notif" id="notif-btn" onclick="requestNotif()">ativar notificações</button>
+    <div id="install-row">
+      <button class="btn-notif" id="btn-install" onclick="installApp()" style="display:none;">adicionar à tela inicial</button>
+    </div>
   </div>
 
   <div class="footer-note">Gustavinho fez com muito amor pra cuidar do seu amor ♡</div>

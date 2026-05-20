@@ -29,6 +29,13 @@ const MESSAGES = [
   { text: "Kamizinha, cuida de você com metade do carinho que você cuida dos outros. Já tá ótimo.", tag: "carinhosa" },
   { text: "Mais um dia, Webber. Mais um comprimido. Mais uma versão sua que se cuidou.", tag: "motivacional" },
   { text: "Kamilly, você já abriu esse app — o mais difícil já foi. Toma o medicamento e fecha.", tag: "simples" },
+  { text: "Webber, os corações não regeneram sozinhos. A menos que você tome o medicamento.", tag: "minezinho ❤️" },
+  { text: "Fazer cama no minezinho é chato mas você faz por garantia. Medicamento é a mesma lógica, Kamilly.", tag: "minezinho 🛏️" },
+  { text: "Poção de velocidade, resistência, força — tudo ótimo. Mas o buff mais importante é o medicamento diário. Vai.", tag: "minezinho 🧪" },
+  { text: "Em Stardew Valley sem energia você não planta, não minera, não faz nada. Na vida real funciona igual. Medicamento primeiro.", tag: "stardew ⚡" },
+  { text: "Webber, aqui não tem como desmaiar na pesca e acordar de boas em casa no dia seguinte. Cuida do seu HP antes.", tag: "stardew ⛏️" },
+  { text: "Pierre não abre domingo mas o seu comprimido tá disponível 24/7. Nenhuma desculpa, Kamilly.", tag: "stardew 🌻" },
+  { text: "Isso é melhor que Joja Cola, Kamilly. Toma o medicamento.", tag: "stardew 🌟" },
 ];
 
 const SPECIAL_DAYS = {
@@ -37,6 +44,8 @@ const SPECIAL_DAYS = {
 
 const STORAGE_KEY = "kamilly_taken_days";
 const TIME_KEY = "kamilly_notif_time";
+
+let deferredInstallPrompt = null;
 
 function getState() {
   try {
@@ -107,9 +116,14 @@ function renderCal() {
     const el = document.createElement('div');
     el.className = 'cal-day';
     el.textContent = d;
-    if (d > today) el.classList.add('future');
-    else if (d === today) el.classList.add(state[key] ? 'taken' : 'today');
-    else if (state[key]) el.classList.add('taken');
+    if (d > today) {
+      el.classList.add('future');
+    } else {
+      el.classList.add('clickable');
+      el.onclick = () => toggleDay(key);
+      if (d === today) el.classList.add(state[key] ? 'taken' : 'today');
+      else if (state[key]) el.classList.add('taken');
+    }
     grid.appendChild(el);
   }
 }
@@ -127,6 +141,34 @@ function setHappy(happy) {
   if (hk) hk.classList.toggle('taken', happy);
 }
 
+function setBtnTaken(taken) {
+  const btn = document.getElementById('take-btn');
+  const svg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:21px;height:21px;"><polyline points="20 6 9 17 4 12"/></svg>`;
+  if (taken) {
+    btn.classList.add('done');
+    btn.innerHTML = `${svg} tomado hoje`;
+  } else {
+    btn.classList.remove('done');
+    btn.innerHTML = `${svg} tomei hoje`;
+  }
+}
+
+function toggleDay(dateKey) {
+  const state = getState();
+  if (state[dateKey]) delete state[dateKey];
+  else state[dateKey] = true;
+  saveState(state);
+
+  if (dateKey === todayKey()) {
+    setBtnTaken(!!state[dateKey]);
+    setHappy(!!state[dateKey]);
+  }
+
+  renderCal();
+  renderStats();
+  showToast(state[dateKey] ? "Dia marcado ✓" : "Dia desmarcado");
+}
+
 function markTaken() {
   const key = todayKey();
   const state = getState();
@@ -134,10 +176,7 @@ function markTaken() {
   state[key] = true;
   saveState(state);
 
-  const btn = document.getElementById('take-btn');
-  btn.classList.add('done');
-  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><polyline points="20 6 9 17 4 12"/></svg> tomado hoje`;
-
+  setBtnTaken(true);
   setHappy(true);
   renderCal();
   renderStats();
@@ -191,6 +230,47 @@ function scheduleNotification(timeStr) {
   });
 }
 
+function initInstall() {
+  const isStandalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  if (isStandalone) {
+    const row = document.getElementById('install-row');
+    if (row) row.style.display = 'none';
+    return;
+  }
+
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+    const btn = document.getElementById('btn-install');
+    if (btn) btn.style.display = 'block';
+    return;
+  }
+
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    const btn = document.getElementById('btn-install');
+    if (btn) btn.style.display = 'block';
+  });
+
+  window.addEventListener('appinstalled', () => {
+    const row = document.getElementById('install-row');
+    if (row) row.style.display = 'none';
+    showToast("App instalado! ♡");
+  });
+}
+
+async function installApp() {
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    const { outcome } = await deferredInstallPrompt.userChoice;
+    if (outcome === 'accepted') {
+      document.getElementById('install-row').style.display = 'none';
+    }
+    deferredInstallPrompt = null;
+  } else if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+    document.getElementById('install-banner').classList.add('visible');
+  }
+}
+
 function init() {
   const msg = getDayMessage();
   document.getElementById('hero-msg').textContent = msg.text;
@@ -199,9 +279,7 @@ function init() {
   const state = getState();
   const key = todayKey();
   if (state[key]) {
-    const btn = document.getElementById('take-btn');
-    btn.classList.add('done');
-    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><polyline points="20 6 9 17 4 12"/></svg> tomado hoje`;
+    setBtnTaken(true);
     setHappy(true);
   }
 
@@ -215,6 +293,7 @@ function init() {
 
   renderCal();
   renderStats();
+  initInstall();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js');
