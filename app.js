@@ -1,35 +1,39 @@
 const MESSAGES = [
-  { text: "Kamilly, não esquece do remédio. Você cuida de tanta gente — cuida de você também.", tag: "carinhosa" },
-  { text: "Webber, hora do remédio. Farmacêutica que não toma o próprio remédio é ironia demais.", tag: "engraçada" },
-  { text: "Kamizinha, remédio tomado = missão cumprida. Vai lá.", tag: "simples" },
-  { text: "Você passa o dia inteiro orientando pacientes sobre medicamentos. Agora é a sua vez.", tag: "farmácia" },
-  { text: "Antes do treino, antes do café, antes de tudo: remédio.", tag: "academia" },
-  { text: "Webber, mais um dia. Mais um comprimido. Mais uma sequência mantida.", tag: "sequência" },
-  { text: "A Kamilinha que corre, lê, trabalha e estuda merece se sentir bem. Começa aqui.", tag: "carinhosa" },
-  { text: "Você decorou a bula inteira de vários remédios. Lembra de tomar o seu.", tag: "engraçada" },
-  { text: "Pequeno gesto, grande diferença. Vai lá, Webber.", tag: "simples" },
-  { text: "Nem o livro, nem a corrida, nem a aula começa antes do remédio.", tag: "rotina" },
-  { text: "Kamizinha, sua saúde importa tanto quanto a dos pacientes que você cuida.", tag: "carinhosa" },
-  { text: "Remédio tomado. Agora pode ir arrasar na farmácia, na faculdade, na academia — na vida.", tag: "motivacional" },
-  { text: "Webber, dose diária. Simples assim.", tag: "direta" },
-  { text: "Você que sabe mais do que ninguém: consistência é tudo. Remédio agora.", tag: "farmácia" },
-  { text: "Um comprimido. Dois segundos. Nenhuma desculpa.", tag: "direta" },
-  { text: "Kamilly, cuida de você hoje. O remédio é o começo.", tag: "carinhosa" },
-  { text: "Antes de abrir o app de treino, antes de abrir o livro: remédio.", tag: "rotina" },
-  { text: "Webber, você é boa demais em cuidar das pessoas. Não esqueça de ser boa também pra você.", tag: "carinhosa" },
-  { text: "Hora do remédio, Kamizinha. Pode confiar no processo.", tag: "simples" },
-  { text: "A sequência não vai quebrar sozinha — e você também não vai deixar. Vai lá.", tag: "sequência" },
-  { text: "Cada dia é uma escolha de se cuidar. Você já está fazendo certo.", tag: "motivacional" },
-  { text: "Farmácia hospitalar de dia, remédio próprio na hora certa. Perfeito.", tag: "farmácia" },
-  { text: "Webber, o comprimido não corre atrás de você. Mas você corre — então vai buscá-lo.", tag: "engraçada" },
-  { text: "Kamilly, sua saúde é o alicerce de tudo que você faz. Cuida bem.", tag: "carinhosa" },
-  { text: "Marca mais um dia. A sequência agradece.", tag: "sequência" },
-  { text: "Nem toda rotina precisa ser difícil. Essa aqui é fácil: remédio, check.", tag: "simples" },
-  { text: "Webber, remédio primeiro. Depois o mundo.", tag: "direta" },
-  { text: "Você que orienta o paciente a não pular dose — então não pula.", tag: "farmácia" },
-  { text: "Kamizinha, cuida de você com o mesmo carinho que você cuida dos outros.", tag: "carinhosa" },
-  { text: "Mais um dia, mais um passo na direção certa. Remédio tomado.", tag: "motivacional" },
+  { text: "Kamilly, medicamento. Agora. Antes de você abrir qualquer outra coisa.", tag: "direta" },
+  { text: "Webber, você orienta paciente sobre medicamento o dia todo e esquece do seu. A ironia tá gritando.", tag: "farmácia 😅" },
+  { text: "Kamizinha, o comprimido não vai se tomar sozinho. Infelizmente.", tag: "simples" },
+  { text: "Antes do treino, antes do café, antes do TikTok: medicamento. Nessa ordem.", tag: "academia" },
+  { text: "Webber, mais um dia, mais um comprimido, mais um dia sem você me dar trabalho. Ótimo.", tag: "sequência" },
+  { text: "Você que sabe a farmacocinética de cabeça — então sabe que horário importa. Toma logo.", tag: "farmácia 🧪" },
+  { text: "Kamilly, a Kamilinha que corre, estuda e ainda arranja tempo pra tudo merece se sentir bem. Começa aqui.", tag: "carinhosa" },
+  { text: "Você decorou bula de medicamento que nem é da sua área. Toma o seu logo.", tag: "engraçada" },
+  { text: "Nem o livro, nem a corrida, nem nada começa antes do medicamento. Regra da casa.", tag: "rotina" },
+  { text: "Kamizinha, você cuida de paciente, de estudo, de treino. Bora cuidar de você também, né.", tag: "carinhosa" },
+  { text: "Webber, dose diária. Sem drama, sem enrolação.", tag: "direta" },
+  { text: "Medicamento tomado = você pode arrasar sem culpa o resto do dia. Lógica impecável.", tag: "motivacional" },
+  { text: "Um comprimido. Dois segundos. Você gastou mais tempo lendo isso.", tag: "direta 😬" },
+  { text: "Farmacêutica sem tomar o próprio medicamento é tipo nutricionista comendo mal. Não faz sentido, Webber.", tag: "farmácia" },
+  { text: "Kamilly, o comprimido tá te esperando. Ele é fiel assim.", tag: "simples" },
+  { text: "Webber, antes de abrir o app de treino: medicamento. Antes de abrir o livro: medicamento. Antes de qualquer coisa: medicamento.", tag: "rotina" },
+  { text: "Você é boa demais em cuidar dos outros. Que tal ser boa em cuidar de você também? Começa pelo comprimido.", tag: "carinhosa" },
+  { text: "Kamizinha, toma o medicamento. Não precisa de motivação, precisa de água e dois segundos.", tag: "direta" },
+  { text: "A sequência tá linda, Webber. Não vai estragar agora por preguiça, vai?", tag: "sequência 👀" },
+  { text: "Você estuda, treina, trabalha e ainda cuida de todo mundo. O mínimo que você merece é se sentir bem. Vai lá.", tag: "carinhosa" },
+  { text: "Kamilly, tomar medicamento todo dia é consistência. Você que ama consistência — então isso aqui é pra você.", tag: "motivacional" },
+  { text: "Farmácia hospitalar de dia, medicamento próprio em dia. Esse é o combo certo.", tag: "farmácia" },
+  { text: "Webber, o comprimido não corre atrás de você. Mas você corre 5km por lazer então vai lá buscá-lo.", tag: "engraçada 🏃" },
+  { text: "Kamilly, um dia você vai agradecer por não ter pulado nenhum. Hoje é mais um desses dias.", tag: "sequência" },
+  { text: "Nem toda rotina precisa ser complicada. Essa aqui é literalmente um comprimido. Vai.", tag: "simples" },
+  { text: "Webber, medicamento primeiro. O mundo pode esperar dois segundos.", tag: "direta" },
+  { text: "Você orienta paciente a não pular dose com aquela cara séria. Então não pula o seu.", tag: "farmácia 😤" },
+  { text: "Kamizinha, cuida de você com metade do carinho que você cuida dos outros. Já tá ótimo.", tag: "carinhosa" },
+  { text: "Mais um dia, Webber. Mais um comprimido. Mais uma versão sua que se cuidou.", tag: "motivacional" },
+  { text: "Kamilly, você já abriu esse app — o mais difícil já foi. Toma o medicamento e fecha.", tag: "simples" },
 ];
+
+const SPECIAL_DAYS = {
+  "2026-05-27": { text: "Kamilly, hoje é dia de prova. Você estudou, você sabe a matéria, e tomou o medicamento — tecnicamente você tá mais preparada que a maioria. Vai lá, Webber.", tag: "prova 🎓" },
+};
 
 const STORAGE_KEY = "kamilly_taken_days";
 const TIME_KEY = "kamilly_notif_time";
@@ -51,6 +55,8 @@ function todayKey() {
 
 function getDayMessage() {
   const d = new Date();
+  const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  if (SPECIAL_DAYS[key]) return SPECIAL_DAYS[key];
   const dayOfYear = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 86400000);
   return MESSAGES[dayOfYear % MESSAGES.length];
 }
@@ -93,7 +99,7 @@ function renderCal() {
   grid.innerHTML = '';
 
   for (let i = 0; i < firstDow; i++) {
-    grid.appendChild(Object.assign(document.createElement('div'), { className: 'cal-day' }));
+    grid.appendChild(Object.assign(document.createElement('div'), { className: 'cal-day empty' }));
   }
 
   for (let d = 1; d <= daysInMonth; d++) {
@@ -116,6 +122,11 @@ function renderStats() {
   document.getElementById('month-sub').textContent = `de ${total} dias`;
 }
 
+function setHappy(happy) {
+  const hk = document.getElementById('hk-wrap');
+  if (hk) hk.classList.toggle('taken', happy);
+}
+
 function markTaken() {
   const key = todayKey();
   const state = getState();
@@ -127,6 +138,7 @@ function markTaken() {
   btn.classList.add('done');
   btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><polyline points="20 6 9 17 4 12"/></svg> tomado hoje`;
 
+  setHappy(true);
   renderCal();
   renderStats();
   showToast("Anotado! Mais um dia cuidando de você.");
@@ -190,6 +202,7 @@ function init() {
     const btn = document.getElementById('take-btn');
     btn.classList.add('done');
     btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><polyline points="20 6 9 17 4 12"/></svg> tomado hoje`;
+    setHappy(true);
   }
 
   const savedTime = localStorage.getItem(TIME_KEY);

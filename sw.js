@@ -1,5 +1,5 @@
-const CACHE = 'kamilly-v1';
-const ASSETS = ['/', '/index.html', '/app.js', '/manifest.json'];
+const CACHE = 'kamilly-v2';
+const ASSETS = ['/', '/index.html', '/app.js', '/manifest.json', '/icons/hello-kitty.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
@@ -28,9 +28,9 @@ self.addEventListener('message', e => {
   scheduledTimer = setTimeout(() => {
     self.registration.showNotification('lembrete', {
       body: message.text,
-      icon: '/icons/icon-192.png',
-      badge: '/icons/badge-72.png',
-      tag: 'remedio-diario',
+      icon: '/icons/hello-kitty.png',
+      badge: '/icons/hello-kitty.png',
+      tag: 'medicamento-diario',
       renotify: true,
       data: { url: '/' },
     });

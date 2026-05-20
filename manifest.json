@@ -1,24 +1,18 @@
 {
-  "name": "Remédio",
-  "short_name": "Remédio",
-  "description": "Lembrete diário de remédio",
+  "name": "Medicamento",
+  "short_name": "Medicamento",
+  "description": "Lembrete diário de medicamento",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#FFF6FA",
   "theme_color": "#D4537E",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
+      "src": "/icons/hello-kitty.png",
+      "sizes": "800x800",
       "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

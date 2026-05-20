@@ -6,175 +6,292 @@
   <meta name="theme-color" content="#D4537E" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Remédio" />
+  <meta name="apple-mobile-web-app-title" content="Medicamento" />
   <link rel="manifest" href="/manifest.json" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-  <title>Remédio</title>
+  <link rel="apple-touch-icon" href="/icons/hello-kitty.png" />
+  <link rel="icon" type="image/png" href="/icons/hello-kitty.png" />
+  <title>Medicamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --pink: #D4537E;
-      --pink-light: #F4C0D1;
-      --pink-bg: #FBEAF0;
-      --pink-dark: #72243E;
-      --pink-mid: #993556;
-      --text: #1a1a1a;
-      --text-muted: #666;
-      --text-hint: #999;
-      --bg: #fff;
-      --surface: #f5f5f3;
-      --border: rgba(0,0,0,0.1);
-      --radius: 14px;
-      --radius-sm: 8px;
+      --pink: #E26A95;
+      --pink-deep: #D4537E;
+      --pink-light: #F7C5D8;
+      --pink-soft: #FCDDE8;
+      --pink-bg: #FFF0F5;
+      --pink-dark: #8A2E4D;
+      --pink-mid: #B14571;
+      --text: #4A2C38;
+      --text-muted: #9A7A86;
+      --text-hint: #C0A4AE;
+      --bg: #FFF6FA;
+      --surface: #FFFFFF;
+      --border: #F3D3DF;
+      --radius: 22px;
+      --radius-sm: 14px;
+      --shadow: 0 6px 20px rgba(212,83,126,0.12);
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --text: #f0f0f0;
-        --text-muted: #aaa;
-        --text-hint: #666;
-        --bg: #111;
-        --surface: #1e1e1e;
-        --border: rgba(255,255,255,0.1);
-        --pink-bg: #2a1520;
-        --pink-light: #4a1f2e;
+        --text: #F6E3EA;
+        --text-muted: #C99FB0;
+        --text-hint: #8C6A77;
+        --bg: #1C1016;
+        --surface: #2A1820;
+        --border: #46283480;
+        --pink-bg: #2A1620;
+        --pink-soft: #3A1E2C;
+        --pink-light: #5A2D40;
+        --pink-dark: #F4B9CE;
+        --pink-mid: #E89BB6;
+        --shadow: 0 6px 20px rgba(0,0,0,0.4);
       }
     }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-    body { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 8%, var(--pink-soft) 0%, transparent 42%),
+        radial-gradient(circle at 88% 96%, var(--pink-soft) 0%, transparent 40%),
+        var(--bg);
+      background-attachment: fixed;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
 
-    .app { max-width: 420px; margin: 0 auto; padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 20px; }
+    .app { max-width: 430px; margin: 0 auto; padding: 22px 18px 48px; display: flex; flex-direction: column; gap: 18px; }
 
-    .app-name { font-size: 12px; letter-spacing: 0.1em; color: var(--text-hint); text-align: center; text-transform: uppercase; }
+    .app-name {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.14em;
+      color: var(--pink-mid); text-align: center; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .app-name::before, .app-name::after { content: "♡"; font-size: 13px; color: var(--pink-light); }
 
+    /* ---- Hero ---- */
     .hero-card {
-      background: var(--pink-bg);
+      background: linear-gradient(160deg, var(--pink-bg), var(--surface));
+      border: 1.5px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
+      padding: 22px 20px 24px;
       text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
     }
-    .hero-msg { font-size: 15px; color: var(--pink-dark); line-height: 1.65; min-height: 52px; }
-    .hero-tag {
-      display: inline-block;
-      margin-top: 12px;
-      font-size: 11px;
-      color: var(--pink-mid);
-      background: var(--pink-light);
-      border-radius: 20px;
-      padding: 3px 12px;
+    .hero-card::before {
+      content: "♡ ♡ ♡";
+      position: absolute; top: 8px; right: 14px;
+      font-size: 11px; color: var(--pink-light); letter-spacing: 3px;
     }
 
+    .hk-wrap { position: relative; width: 168px; height: 168px; margin: 4px auto 14px; }
+    .hk-img { width: 100%; height: 100%; object-fit: contain; display: block;
+      filter: drop-shadow(0 5px 8px rgba(212,83,126,0.22));
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
+    .hk-wrap.taken .hk-img { animation: hk-bounce 1.6s ease-in-out infinite; }
+    @keyframes hk-bounce {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      30% { transform: translateY(-7px) rotate(-3deg); }
+      60% { transform: translateY(-2px) rotate(3deg); }
+    }
+
+    /* band-aid: visible only when NOT taken */
+    .hk-bandaid {
+      position: absolute; width: 70px; height: auto;
+      top: 50%; left: 12%;
+      transform: rotate(-32deg);
+      transition: opacity .35s, transform .35s;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.18));
+    }
+    .hk-wrap.taken .hk-bandaid { opacity: 0; transform: rotate(-32deg) scale(.4) translateY(20px); }
+
+    /* blush + hearts: visible only when taken */
+    .hk-blush {
+      position: absolute; width: 30px; height: 19px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,130,170,0.85) 0%, rgba(255,130,170,0) 72%);
+      opacity: 0; transition: opacity .4s; pointer-events: none;
+    }
+    .hk-blush.left  { top: 59%; left: 19%; }
+    .hk-blush.right { top: 59%; right: 19%; }
+    .hk-wrap.taken .hk-blush { opacity: 1; }
+
+    .hk-heart {
+      position: absolute; font-size: 18px; color: var(--pink-deep);
+      opacity: 0; pointer-events: none;
+    }
+    .hk-heart.h1 { top: 4%;  left: 2%;  }
+    .hk-heart.h2 { top: -4%; right: 8%; font-size: 14px; }
+    .hk-heart.h3 { top: 30%; right: -6%; font-size: 22px; }
+    .hk-heart.h4 { bottom: 8%; left: -4%; font-size: 16px; }
+    .hk-wrap.taken .hk-heart { animation: heart-float 2.4s ease-in-out infinite; }
+    .hk-wrap.taken .hk-heart.h2 { animation-delay: .5s; }
+    .hk-wrap.taken .hk-heart.h3 { animation-delay: 1s; }
+    .hk-wrap.taken .hk-heart.h4 { animation-delay: 1.5s; }
+    @keyframes heart-float {
+      0%   { opacity: 0; transform: translateY(6px) scale(.6); }
+      30%  { opacity: 1; transform: translateY(-4px) scale(1); }
+      70%  { opacity: 1; transform: translateY(-10px) scale(1); }
+      100% { opacity: 0; transform: translateY(-20px) scale(.7); }
+    }
+
+    .hero-msg { font-size: 15.5px; font-weight: 500; color: var(--pink-dark); line-height: 1.6; min-height: 50px; }
+    .hero-tag {
+      display: inline-block; margin-top: 12px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+      color: #fff; background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+      border-radius: 20px; padding: 5px 14px;
+      box-shadow: 0 3px 8px rgba(212,83,126,0.3);
+    }
+
+    /* ---- Take button ---- */
     .btn-take {
-      width: 100%;
-      padding: 16px;
+      width: 100%; padding: 17px;
       border-radius: var(--radius);
       border: none;
-      background: var(--pink);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 500;
+      background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+      color: #fff; font-family: inherit; font-size: 16px; font-weight: 700;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: opacity .15s, transform .1s;
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      box-shadow: 0 8px 22px rgba(212,83,126,0.34);
+      transition: transform .12s, box-shadow .15s, opacity .15s;
     }
-    .btn-take:active { transform: scale(0.97); opacity: .85; }
+    .btn-take:active { transform: scale(0.97); }
     .btn-take.done {
       background: var(--surface);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
+      color: var(--pink-mid);
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow);
     }
-    .btn-take svg { width: 20px; height: 20px; }
+    .btn-take svg { width: 21px; height: 21px; }
 
-    .streak-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .metric { background: var(--surface); border-radius: var(--radius-sm); padding: 14px; }
-    .metric-label { font-size: 11px; color: var(--text-hint); margin-bottom: 4px; }
-    .metric-val { font-size: 26px; font-weight: 500; color: var(--text); }
-    .metric-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-
-    .section-label { font-size: 11px; font-weight: 500; color: var(--text-hint); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
-
-    .cal-day-labels { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin-bottom: 4px; }
-    .cal-day-label { font-size: 10px; color: var(--text-hint); text-align: center; }
-    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-    .cal-day {
-      aspect-ratio: 1;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      color: var(--text-hint);
+    /* ---- Metrics ---- */
+    .streak-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .metric {
       background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 15px; text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .metric-label { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--pink-mid); text-transform: uppercase; margin-bottom: 5px; }
+    .metric-val { font-size: 30px; font-weight: 700; color: var(--pink-deep); line-height: 1; }
+    .metric-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ---- Cards ---- */
+    .card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .section-label {
+      font-size: 12px; font-weight: 700; color: var(--pink-mid);
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .section-label::before { content: "♡"; color: var(--pink-light); }
+
+    /* ---- Calendar ---- */
+    .cal-day-labels { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 5px; }
+    .cal-day-label { font-size: 10px; font-weight: 700; color: var(--pink-light); text-align: center; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .cal-day {
+      aspect-ratio: 1; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600;
+      color: var(--text-hint); background: var(--pink-bg);
       cursor: default;
     }
-    .cal-day.taken { background: var(--pink-light); color: var(--pink-dark); font-weight: 500; }
-    .cal-day.today { background: var(--pink); color: #fff; font-weight: 500; }
-    .cal-day.future { opacity: 0.25; }
+    .cal-day.taken {
+      background: linear-gradient(135deg, var(--pink-light), var(--pink-soft));
+      color: var(--pink-dark);
+    }
+    .cal-day.taken::after { content: "♡"; font-size: 9px; }
+    .cal-day.today {
+      background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+      color: #fff; box-shadow: 0 3px 8px rgba(212,83,126,0.34);
+    }
+    .cal-day.future { opacity: 0.4; }
+    .cal-day.empty { background: transparent; }
 
-    .notif-section { display: flex; flex-direction: column; gap: 10px; }
+    /* ---- Notifications ---- */
+    .notif-section { display: flex; flex-direction: column; gap: 12px; }
     .notif-row { display: flex; align-items: center; justify-content: space-between; }
-    .notif-label { font-size: 14px; color: var(--text); }
+    .notif-label { font-size: 14px; font-weight: 600; color: var(--text); }
     .notif-sub { font-size: 12px; color: var(--text-muted); }
     .time-input {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--pink-bg);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
-      color: var(--text);
-      font-size: 15px;
-      padding: 8px 12px;
-      cursor: pointer;
+      color: var(--pink-deep); font-family: inherit; font-weight: 600;
+      font-size: 15px; padding: 9px 13px; cursor: pointer;
     }
-
     .btn-notif {
-      width: 100%;
-      padding: 13px;
+      width: 100%; padding: 14px;
       border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
-      font-size: 14px;
-      cursor: pointer;
-      transition: background .1s;
+      border: 1.5px solid var(--border);
+      background: var(--pink-bg);
+      color: var(--pink-mid); font-family: inherit; font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: background .12s;
     }
-    .btn-notif:hover { background: var(--surface); }
-
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #222;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 13px;
-      opacity: 0;
-      transition: opacity .3s, transform .3s;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .btn-notif:active { background: var(--pink-soft); }
 
     .install-banner {
-      background: var(--pink-bg);
-      border: 1px solid var(--pink-light);
+      background: var(--pink-soft);
+      border: 1.5px solid var(--pink-light);
       border-radius: var(--radius-sm);
       padding: 12px 14px;
-      font-size: 13px;
-      color: var(--pink-dark);
-      line-height: 1.5;
+      font-size: 13px; color: var(--pink-dark); line-height: 1.5;
       display: none;
     }
     .install-banner.visible { display: block; }
+
+    .footer-note {
+      text-align: center; font-size: 11px; color: var(--text-hint);
+      margin-top: 2px;
+    }
+
+    .toast {
+      position: fixed; bottom: 30px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+      color: #fff; padding: 12px 22px;
+      border-radius: 22px; font-size: 13px; font-weight: 600;
+      box-shadow: 0 8px 22px rgba(212,83,126,0.4);
+      opacity: 0; transition: opacity .3s, transform .3s;
+      pointer-events: none; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 <div class="app">
-  <div class="app-name">lembrete</div>
+  <div class="app-name">lembrete da kamilly</div>
 
   <div class="hero-card">
+    <div class="hk-wrap" id="hk-wrap">
+      <img class="hk-img" src="/icons/hello-kitty.png" alt="Hello Kitty" />
+      <svg class="hk-bandaid" viewBox="0 0 120 46" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="11" width="114" height="24" rx="12" fill="#F79EC0" stroke="#E27CA3" stroke-width="1.5"/>
+        <rect x="40" y="6" width="40" height="34" rx="9" fill="#FCC9DD" stroke="#E27CA3" stroke-width="1.5"/>
+        <circle cx="52" cy="16" r="2.3" fill="#E27CA3"/>
+        <circle cx="68" cy="16" r="2.3" fill="#E27CA3"/>
+        <circle cx="60" cy="23" r="2.3" fill="#E27CA3"/>
+        <circle cx="52" cy="30" r="2.3" fill="#E27CA3"/>
+        <circle cx="68" cy="30" r="2.3" fill="#E27CA3"/>
+      </svg>
+      <div class="hk-blush left"></div>
+      <div class="hk-blush right"></div>
+      <span class="hk-heart h1">♥</span>
+      <span class="hk-heart h2">♥</span>
+      <span class="hk-heart h3">♥</span>
+      <span class="hk-heart h4">♥</span>
+    </div>
     <div class="hero-msg" id="hero-msg"></div>
     <div class="hero-tag" id="hero-tag"></div>
   </div>
@@ -197,7 +314,7 @@
     </div>
   </div>
 
-  <div>
+  <div class="card">
     <div class="section-label" id="cal-title">carregando...</div>
     <div class="cal-day-labels">
       <div class="cal-day-label">D</div>
@@ -211,7 +328,7 @@
     <div class="cal-grid" id="cal-grid"></div>
   </div>
 
-  <div class="notif-section">
+  <div class="card notif-section">
     <div class="section-label">notificações</div>
     <div class="install-banner" id="install-banner">
       Para receber notificações, adicione o app à sua tela de início: toque em <strong>Compartilhar</strong> no Safari, depois <strong>Adicionar à Tela de Início</strong>.
@@ -225,6 +342,8 @@
     </div>
     <button class="btn-notif" id="notif-btn" onclick="requestNotif()">ativar notificações</button>
   </div>
+
+  <div class="footer-note">Gustavinho fez com muito amor pra cuidar do seu amor ♡</div>
 </div>
 
 <div class="toast" id="toast"></div>

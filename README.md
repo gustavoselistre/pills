@@ -1,34 +1,17 @@
 # pills
 
-PWA de lembrete diário de remédio. Funciona como app no iPhone (iOS 16.4+) com notificações push.
+PWA de lembrete diário de medicamento, com tema Hello Kitty e mensagens personalizadas. Funciona como app no iPhone (iOS 16.4+) com notificações push.
 
 ## Estrutura
 
 ```
-├── index.html        # app principal
-├── app.js            # lógica: mensagens, streak, calendário, notificações
-├── sw.js             # service worker (cache offline + notificações)
-├── manifest.json     # configuração PWA
-├── generate-icons.js # script para gerar ícones (opcional)
+├── index.html     # app principal (UI + estilos, tema rosa)
+├── app.js         # lógica: mensagens, streak, calendário, notificações
+├── sw.js          # service worker (cache offline + notificações)
+├── manifest.json  # configuração PWA
 └── icons/
-    ├── icon-192.png
-    ├── icon-512.png
-    └── badge-72.png
+    └── hello-kitty.png   # ícone do app + carinha do hero
 ```
-
-## Ícones
-
-### Opção 1 — gerar via script
-```bash
-npm install canvas
-node generate-icons.js
-```
-
-### Opção 2 — gerar online (mais fácil)
-1. Acesse https://realfavicongenerator.net
-2. Faça upload de qualquer imagem (ex: um emoji de pílula)
-3. Baixe o pacote e coloque `android-chrome-192x192.png` → `icons/icon-192.png` e `android-chrome-512x512.png` → `icons/icon-512.png`
-4. Crie um `icons/badge-72.png` simples (72x72, qualquer ícone pequeno)
 
 ## Deploy no Cloudflare Pages
 
@@ -61,17 +44,37 @@ node generate-icons.js
 As mensagens estão em `app.js` no array `MESSAGES`. São 30 mensagens personalizadas que rodam em ciclo com base no dia do ano — uma diferente por dia, automaticamente.
 
 Para adicionar ou editar mensagens, basta modificar o array. Cada item tem:
+
 ```js
 { text: "texto da mensagem", tag: "categoria" }
 ```
 
+### Mensagens de datas especiais
+
+O objeto `SPECIAL_DAYS` no topo do `app.js` sobrescreve a mensagem do dia
+em datas específicas. A chave é a data no formato `AAAA-MM-DD`:
+
+```js
+const SPECIAL_DAYS = {
+  "2026-05-27": { text: "...", tag: "prova 🎓" },
+};
+```
+
+## Hello Kitty
+
+A carinha da Hello Kitty no topo reage ao uso:
+- **Antes de tomar:** aparece com um band-aid no rosto
+- **Depois de marcar "tomei hoje":** o band-aid some e ela fica felizinha
+  (bochechas coradas, coraçõezinhos e uma animação de pulinho)
+
 ## Funcionalidades
 
-- Mensagem diferente a cada dia (ciclo de 30)
+- Mensagem diferente a cada dia (ciclo de 30) + mensagens de datas especiais
+- Hello Kitty que reage quando o medicamento é tomado
 - Botão "tomei hoje" com confirmação visual
 - Streak de dias consecutivos
 - Calendário mensal mostrando dias tomados
 - Notificação push diária no horário configurado
 - Funciona offline (service worker com cache)
-- Dark mode automático
+- Tema rosa, com dark mode automático
 - Dados salvos localmente (localStorage)
