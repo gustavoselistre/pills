@@ -1,4 +1,4 @@
-# kamilly-reminder
+# pills
 
 PWA de lembrete diário de remédio. Funciona como app no iPhone (iOS 16.4+) com notificações push.
 
@@ -44,7 +44,7 @@ node generate-icons.js
 
 5. Clique em "Save and Deploy"
 
-6. Pronto — a URL gerada é o endereço do app (ex: `kamilly-reminder.pages.dev`)
+6. Pronto — a URL gerada é o endereço do app (ex: `pills-7zz.pages.dev`)
 
 ## Como ela instala no iPhone
 
